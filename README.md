@@ -1,3 +1,10 @@
+<img src="/img/brd.jpg"/>
+
+🤗 Please consider subscribing to my [YouTube channel](https://www.youtube.com/@PricelessToolkit/videos). Your subscription goes a long way in backing my work. If you feel more generous, you can buy me a coffee
+
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U6U2QLAF8)
+
 # TTGO_Gateway
 Simple One-Way LoRa Gateway for Home Assistant. The full version with 2-Way communication and ESP-NOW support is [CapiBridge](https://github.com/PricelessToolkit/CapiBridge)
 
@@ -44,7 +51,6 @@ TTGO LoRa32 V2.1_1.6.1 on Aliexpress [LILYGO® TTGO LoRa32 V2.1_1.6 Version 433/
 
 ## Setting up WIFI and LoRa in the Gateway
 - Firmware `TTGO_Gateway.ino`
-- LoRa Configuration File `config.h`
 - If necessary, change the LoRa Configuration in `config.h` config File.
 - The LoRa settings in the gateway and in the sensor must match.
 
@@ -134,3 +140,7 @@ int intPercentage = (int)percentage;
 	
 LoRa.print("{\"k\":\"" + String(GATEWAY_KEY) + "\",\"id\":\"" + String(NODE_NAME) + "\",\"s\":\"mail\",\"b\":" + String(intPercentage) + "}");
 ```
+
+## Additional links
+
+Official LilyGO Github page : https://github.com/LilyGO/TTGO-LoRa32-V2.1
