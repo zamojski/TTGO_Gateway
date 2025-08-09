@@ -84,7 +84,7 @@
 
 #elif LORA_V1_6_OLED
 #include <Wire.h> 
-#include "SSD1306Wire.h" 
+#include <SSD1306Wire.h>
 #define OLED_CLASS_OBJ  SSD1306Wire
 #define OLED_ADDRESS    0x3C
 #define OLED_SDA    21

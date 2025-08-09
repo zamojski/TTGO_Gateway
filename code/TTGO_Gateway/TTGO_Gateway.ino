@@ -2,11 +2,11 @@
 #include "board.h"
 #include "config.h"
 #include <SPI.h>
-#include <LoRa.h>
+#include <LoRa.h> // LoRa by Sandeep Mistry version 0.8.0
 #include <WiFi.h>
-#include <PubSubClient.h>
-#include <ArduinoJson.h>
-#include "SSD1306Wire.h"
+#include <PubSubClient.h> // PublSubClient by Nick O'Leary version 2.8
+#include <ArduinoJson.h> // ArduinoJson by Benoit Blanchon version 7.4.2
+#include <SSD1306Wire.h> // ESP8266 and ESP32 OLED driver for SSD1306 displays by ThingPulse version 4.6.1
 
 SSD1306Wire display(OLED_ADDRESS, OLED_SDA, OLED_SCL);
 
@@ -98,6 +98,21 @@ void reconnect() {
       delay(1000);
     }
   }
+}
+
+
+// -------------------- Xor Encryp/Decrypt -------------------- //
+
+String xorCipher(String input) {
+  const byte key[] = encryption_key;
+  const int keyLength = encryption_key_length;
+
+  String output = "";
+  for (unsigned int i = 0; i < input.length(); i++) {
+    byte keyByte = key[i % keyLength];
+    output += char(input[i] ^ keyByte);
+  }
+  return output;
 }
 
 
@@ -654,6 +669,10 @@ void updateMessagesAndPublish(const JsonDocument& doc) {
 
 void parseIncomingPacket(String serialrow) {
   StaticJsonDocument<1024> doc; // Adjust size as necessary
+
+  #if Encryption
+  serialrow = xorCipher(serialrow);
+  #endif
 
   DeserializationError error = deserializeJson(doc, serialrow);
   if (error) {

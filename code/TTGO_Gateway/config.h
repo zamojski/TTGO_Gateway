@@ -13,6 +13,13 @@
 #define MQTT_SERVER "xxxx"
 #define MQTT_PORT 1883
 
+#define Encryption true                            // Global Payload obfuscation (Encryption)
+#define encryption_key_length 4                    // must match number of bytes in the XOR key array
+#define encryption_key { 0x01, 0x02, 0x03, 0x04 }  // Multi-byte XOR key (between 2–16 values).
+                                                   // Use random-looking HEX values (from 0x00 to 0xFF).
+                                                   // Must match exactly on both sender and receiver.
+                                                   // Example: { 0x1F, 0x7E, 0xC2, 0x5A }  ➜ 4-byte key.
+
 ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -31,7 +38,7 @@
 // due to the decreased data rate, which is a trade-off for increased communication range and signal robustness.
 
 #define SIGNAL_BANDWITH 125E3  // signal bandwidth in Hz, defaults to 125E3
-#define SPREADING_FACTOR 8    // ranges from 6-12,default 7 see API docs
+#define SPREADING_FACTOR 8     // ranges from 6-12,default 7 see API docs
 #define CODING_RATE 5          // Supported values are between 5 and 8, these correspond to coding rates of 4/5 and 4/8. The coding rate numerator is fixed at 4.
 #define SYNC_WORD 0x12         // byte value to use as the sync word, defaults to 0x12
 #define PREAMBLE_LENGTH 6      // Supported values are between 6 and 65535.
